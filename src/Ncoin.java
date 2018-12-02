@@ -9,8 +9,8 @@ public class Ncoin {
     private int x1;
     private int x2;
     private int n;
-    private int a1;
-    private int a2;
+    public int a1;
+    public int a2;
     /**
      * c1 is the value of the first coin.
      * c2 is the value of the second coin.
@@ -25,10 +25,15 @@ public class Ncoin {
         if (n == 0) {
             return true;
         }
-        int[][] CHENG = new int[][];
+        int[][] CHENG = new int[n][n];
         for (int i = 1; i < n; i++) {
             for (int j = 1; j < n; j++) {
                 CHENG[i][j] = x1 * i + x2 * j;
+            }
+        }
+        System.out.println(CHENG);
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < n; j++) {
                 if (CHENG[i][j] == n) {
                     a1 = i;
                     a2 = j;
