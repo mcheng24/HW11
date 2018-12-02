@@ -29,9 +29,10 @@ public class Ncoin {
         for (int i = 1; i < n; i++) {
             for (int j = 1; j < n; j++) {
                 CHENG[i][j] = x1 * i + x2 * j;
+                System.out.print(CHENG[i][j] + " ");
             }
+            System.out.println();
         }
-        System.out.println(CHENG);
         for (int i = 1; i < n; i++) {
             for (int j = 1; j < n; j++) {
                 if (CHENG[i][j] == n) {

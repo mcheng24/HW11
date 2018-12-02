@@ -9,13 +9,13 @@ public class Main {
         int x2 = read.nextInt();
         System.out.println("Enter a value for N: ");
         int n = read.nextInt();
-        System.out.println("First coin value: " + x1 + "\n Second coin value: " + x2 + "\n N value: " + n);
+        System.out.println("First coin value: " + x1 + "\nSecond coin value: " + x2 + "\nN value: " + n);
 
         Ncoin obj = new Ncoin(x1, x2, n);
         boolean change = obj.makeChange();
         System.out.println(change);
         if (change) {
-            System.out.println("How many of the first coin needed: " + obj.a1 + "\n How many of the first coin needed: " + obj.a2);
+            System.out.println("How many of the first coin needed: " + obj.a1 + "\nHow many of the first coin needed: " + obj.a2);
         }
     }
 }
