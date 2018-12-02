@@ -21,6 +21,9 @@ public class Ncoin {
         n = N;
     }
 
+    /**
+     * @return if a combination of coins add up to a value N
+     */
     public boolean makeChange() {
         if (n == 0) {
             return true;
