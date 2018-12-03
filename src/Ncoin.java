@@ -38,38 +38,16 @@ public class Ncoin {
             if (i>= x1 || i >= x2) {
                 CHENG[i] = CHENG[i - x1] || CHENG[i - x2];
                 if (CHENG[i] && CHENG[i] == CHENG[i - x1]) {
-                    c[i][0]++;
+                    c[i][0] += c[i-x1][0] + 1;
+                    c[i][1] += c[i-x1][1];
                 } else if (CHENG[i] && CHENG[i] == CHENG[i - x2]) {
-                    c[i][1]++;
+                    c[i][1] += c[i-x2][1] + 1;
+                    c[i][1] += c[i-x2][0];
                 }
             }
         }
         return CHENG;
     }
-    /**
-     * assigns coin combinations to elements in CHENG.
-     */
-    public int[][] getCoins() {
-        if (n < 0 || x1 <= 0 || x2 <= 0 || x1 > n || x2 > n) {
-            System.out.println("Invalid Input");
-            return null;
-        } else {
-            for (int i = 0; i <= n; i++) {
-                if (CHENG[i]) {
-                    for (int j = 0; j < i; j++) {
-                        for (int k = 0; k < i; k++) {
-                            if (n == j*x1 + k*x2) {
-                                c[i][0] = j;
-                                c[i][1] = k;
-                            }
-                        }
-                    }
-                }
-            }
-            return c;
-        }
-    }
-
     @Override
     public String toString() {
         return Arrays.toString(CHENG) +
