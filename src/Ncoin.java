@@ -4,9 +4,10 @@ public class Ncoin {
     /**
      * x1 value of first coin.
      * x2 value of second coin.
-     * c stores the amount needed of each coin.
      * n is the N value that the coins could make change of.
-     * cAmount is the amount of coins needed of each to make n.
+     * c is a counter array that stores the amount needed of each coin to make up n.
+     * ***c[i][0] stores the amount of the first coin needed to add up to i.
+     * ***c[i][1] stores the amount of the second coin needed to add up to i.
      * CHENG is a boolean array that determines whether the first and second coin add up to n.
      */
     private int x1;
@@ -15,8 +16,7 @@ public class Ncoin {
     private int[][] c;
     private boolean[] CHENG;
      /**
-     * x1 is the value of the first coin.
-     * x2 is the value of the second coin.
+     * Basic Constructor
      */
     public Ncoin(final int coin1, final int coin2, final int N) {
         if (coin1 < 0 || coin2 < 0 || N < 0) {
@@ -31,7 +31,8 @@ public class Ncoin {
     }
 
     /**
-     * @return if a combination of coins add up to a value N
+     * Modifies CHENG array and counter array to check how many coins are needed to sum up to n.
+     * @return a boolean array CHENG that stores if a combination exists that adds to n.
      */
     public boolean[] makeChange() {
         if (n < 0 || x1 <= 0 || x2 <= 0) {
