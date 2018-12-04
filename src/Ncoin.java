@@ -19,30 +19,49 @@ public class Ncoin {
      * x2 is the value of the second coin.
      */
     public Ncoin(final int coin1, final int coin2, final int N) {
-        x1 = coin1;
-        x2 = coin2;
-        n = N;
-        CHENG = new boolean[n + 1];
-        c = new int[n+1][2];
+        if (coin1 < 0 || coin2 < 0 || N < 0) {
+            System.out.println("Invalid Input");
+        } else {
+            x1 = coin1;
+            x2 = coin2;
+            n = N;
+            CHENG = new boolean[n + 1];
+            c = new int[n + 1][2];
+        }
     }
 
     /**
      * @return if a combination of coins add up to a value N
      */
     public boolean[] makeChange() {
-        if (n < 0 || x1 <= 0 || x2 <= 0 || x1 > n || x2 > n) {
-            return CHENG;
+        if (n < 0 || x1 <= 0 || x2 <= 0) {
+            System.out.println("Invalid Input");
+            return null;
         }
         CHENG[0] = true;
         for (int i = 1; i <= n; i++) {
-            if (i>= x1 || i >= x2) {
-                CHENG[i] = CHENG[i - x1] || CHENG[i - x2];
-                if (CHENG[i] && CHENG[i] == CHENG[i - x1]) {
-                    c[i][0] += c[i-x1][0] + 1;
-                    c[i][1] += c[i-x1][1];
-                } else if (CHENG[i] && CHENG[i] == CHENG[i - x2]) {
-                    c[i][1] += c[i-x2][1] + 1;
-                    c[i][1] += c[i-x2][0];
+            if (i>= x1 || i>= x2) {
+                if (i - x2 < 0) {
+                    CHENG[i] = CHENG[i - x1];
+                    if (CHENG[i]) {
+                        c[i][0] += c[i - x1][0] + 1;
+                        c[i][1] += c[i - x1][1];
+                    }
+                } else if (i - x1 < 0) {
+                    CHENG[i] = CHENG[i - x2];
+                    if (CHENG[i]) {
+                        c[i][1] += c[i - x2][1] + 1;
+                        c[i][1] += c[i - x2][0];
+                    }
+                } else {
+                    CHENG[i] = CHENG[i - x1] || CHENG[i - x2];
+                    if (CHENG[i] && CHENG[i] == CHENG[i - x1]) {
+                        c[i][0] += c[i - x1][0] + 1;
+                        c[i][1] += c[i - x1][1];
+                    }else if (CHENG[i] && CHENG[i] == CHENG[i - x2]) {
+                        c[i][1] += c[i - x2][1] + 1;
+                        c[i][1] += c[i - x2][0];
+                    }
                 }
             }
         }
